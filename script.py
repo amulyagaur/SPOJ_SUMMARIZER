@@ -24,7 +24,9 @@ page = requests.get("https://www.spoj.com/users/"+username)
 soup = BeautifulSoup(page.content, 'html.parser')
 
 profile = soup.find(id='user-profile-left')
-
+if profile is None:
+    print("No such user exists")
+    exit()
 profile_stats = profile.find_all('p')
 stats=[]
 for i in profile_stats:
@@ -63,7 +65,7 @@ for code in problem_codes:
             topics[tag]=1
     if len(tags)==0:
         topics['#untagged']+=1
-    progbar(cc,maxp,70)  
+    progbar(cc,maxp,70)
     cc+=1
     sys.stdout.flush()
 progbar(maxp,maxp,70)
