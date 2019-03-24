@@ -1,9 +1,12 @@
 # SPOJ SUMMARIZER
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+
 > An easy to use tool to track your progress on spoj.
 
 ![https://github.com/amulyagaur/SPOJ_SUMMARIZER/blob/master/](Screenshot%20from%202019-02-28%2020-05-25.png)
 
 ![https://github.com/amulyagaur/SPOJ_SUMMARIZER/blob/master/](Screenshot%20from%202019-02-28%2020-06-32.png)
+
 
 ## Installation
 
