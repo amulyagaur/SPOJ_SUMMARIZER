@@ -1,0 +1,14 @@
+README.md
+setup.cfg
+setup.py
+spoj-summarizer/benchmark.py
+spoj-summarizer/script.py
+spoj-summarizer/setup.py
+spoj-summarizer/tabulate.py
+spoj-summarizer/test.py
+spoj_summarizer.egg-info/PKG-INFO
+spoj_summarizer.egg-info/SOURCES.txt
+spoj_summarizer.egg-info/dependency_links.txt
+spoj_summarizer.egg-info/entry_points.txt
+spoj_summarizer.egg-info/requires.txt
+spoj_summarizer.egg-info/top_level.txt

@@ -1,61 +1,33 @@
-#!/usr/bin/env python
-
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
+import sys
 
+from codecs import open
+from os import path
 
-from platform import python_version_tuple, python_implementation
-import os
-import re
+if sys.version < '3.5.1':
+    print("Supports only Python >= 3.5.1")
+    sys.exit(1)
 
-# strip links from the descripton on the PyPI
-if python_version_tuple()[0] >= '3':
-    LONG_DESCRIPTION = open("README.rst", "r", encoding="utf-8").read().replace("`_", "`")
-else:
-    LONG_DESCRIPTION = open("README.rst", "r").read().replace("`_", "`")
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
-# strip Build Status from the PyPI package
-try:
-    if python_version_tuple()[:2] >= ('2', '7'):
-        status_re = "^Build status\n(.*\n){7}"
-        LONG_DESCRIPTION = re.sub(status_re, "", LONG_DESCRIPTION, flags=re.M)
-except TypeError:
-    if python_implementation() == "IronPython":
-        # IronPython doesn't support flags in re.sub (IronPython issue #923)
-        pass
-    else:
-        raise
-
-install_options = os.environ.get("TABULATE_INSTALL","").split(",")
-libonly_flags = set(["lib-only", "libonly", "no-cli", "without-cli"])
-if libonly_flags.intersection(install_options):
-    console_scripts = []
-else:
-    console_scripts = ['tabulate = tabulate:_main']
-
-
-setup(name='tabulate',
-      version='0.8.3',
-      description='Pretty-print tabular data',
-      long_description=LONG_DESCRIPTION,
-      author='Sergey Astanin',
-      author_email='s.astanin@gmail.com',
-      url='https://bitbucket.org/astanin/python-tabulate',
+setup(name='spoj-summarizer',
+      version='1.0.0',
+      description='An easy to use python package to track your progress on spoj.',
+      url='https://github.com/amulyagaur/SPOJ_SUMMARIZER',
+      download_url = 'https://github.com/amulyagaur/SPOJ_SUMMARIZER/archive/1.0.0.tar.gz',
+      entry_points={'console_scripts': ['richest = richest.__main__:main']},
+      keywords=['spoj-summarizer', 'competitive-programming', 'summary', 'progress check','spoj'],
+      author='Amulya Gaur',
+      author_email='amulya@mnnit.ac.in',
       license='MIT',
-      classifiers= [ "Development Status :: 4 - Beta",
-                     "License :: OSI Approved :: MIT License",
-                     "Operating System :: OS Independent",
-                     "Programming Language :: Python :: 2",
-                     "Programming Language :: Python :: 2.7",
-                     "Programming Language :: Python :: 3.3",
-                     "Programming Language :: Python :: 3.4",
-                     "Programming Language :: Python :: 3",
-                     "Programming Language :: Python :: 3.5",
-                     "Programming Language :: Python :: 3.6",
-                     "Topic :: Software Development :: Libraries" ],
-      py_modules = ['tabulate'],
-      entry_points = {'console_scripts': console_scripts},
-      extras_require = {'widechars': ['wcwidth']},
-      test_suite = 'nose.collector')
+      packages=['spoj-summarizer'],
+      install_requires=[
+          'requests','pandas'
+      ],
+      long_description=long_description,
+      long_description_content_type='text/markdown')
